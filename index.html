@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./libs/vue3.js"></script>
+    <script src="./libs/axios.js"></script>
+    <link rel="stylesheet" href="./libs/tailwind.css">
+    <link rel="stylesheet" href="./libs/typography.css">
+</head>
+<body>
+    
+    <div id="vue">
+       <div class="h-screen v-screen flex items-center justify-center ">
+           <div v-if="ui.welcome || ui.gameOver"  class="border border-gray-900 absolute" :style="{width:gameWidth + 'px', height: gameHeight + 'px'}" >
+            <div  v-if="ui.welcome" class="w-full h-full flex justify-center items-center cursor-pointer text-lg" @click="setupGame">🐢 ☘️</div>
+            <div v-if="ui.welcome" class="w-full flex justify-center items-center cursor-pointer text-xl py-2">Click to jump!</div>
+
+            <div  v-if="ui.gameOver" class="w-full h-full flex justify-center items-center cursor-pointer flex-wrap" @click="setupGame"><div class="w-full text-center">Game Over :c</div> <div class="w-full text-center"> Platforms Jumped: {{gameState.bellsJumped}}</div></div>
+
+           </div>
+            <canvas ref="canvas" class="border border-gray-900" :width="gameWidth" :height="gameHeight" @click="startGame" @mousemove="getMouseCoords"></canvas>
+       </div>       
+    </div>
+
+    <script src="./app.js"></script>
+<audio src="2.wav" loop id="audio" />
+</body>
+</html>
